@@ -56,7 +56,7 @@ func insertUser(user model.Users){
 func updateUser(userId string) {
 	id, _ := primitive.ObjectIDFromHex(userId)
 	filter := bson.M{"_id": id}
-	update := bson.M{"$set": bson.M{"desc": "Description updated"}}
+	update := bson.M{"$set": bson.M{"description": "Description updated"}}
 
 	result, err := collection.UpdateOne(context.Background(), filter, update)
 	if err != nil {
