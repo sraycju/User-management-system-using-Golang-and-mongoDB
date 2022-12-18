@@ -3,9 +3,9 @@ package controller
 import (
 	"context"
 	"encoding/json"
+	"net/http"
 	"fmt"
 	"log"
-	"net/http"
 	"crud/model"
 	"github.com/gorilla/mux"
 	"go.mongodb.org/mongo-driver/bson"
@@ -32,7 +32,7 @@ func init() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Println("MongoDB connection success")
+	fmt.Println("Database connected successfully!!")
 
 	collection = client.Database(dbName).Collection(colName)
 
@@ -40,13 +40,16 @@ func init() {
 	fmt.Println("Collection instance is ready")
 }
 
+// Dao layer
+
+// insert record
 func insertUser(user model.Users){
 	inserted, err := collection.InsertOne(context.Background(), user)
 
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Println("Inserted 1 user in database with id: ", inserted.InsertedID)
+	fmt.Println("Inserted user in database with id: ", inserted.InsertedID)
 
 }
 // update record
@@ -97,6 +100,9 @@ func deleteUser(userId string) {
 	fmt.Println("User got delete with delete count: ", deleteCount)
 }
 
+// calls functions from the dao layer
+
+// Create 
 func CreateUsers(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/x-www-form-urlencode")
 	w.Header().Set("Allow-Control-Allow-Methods", "POST")
@@ -108,12 +114,15 @@ func CreateUsers(w http.ResponseWriter, r *http.Request) {
 
 }
 
+// Retrieve
 func GetAllUsers(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/x-www-form-urlencode")
 	allMovies := getAllUsers()
 	json.NewEncoder(w).Encode(allMovies)
 }
 
+
+// Delete
 func DeleteAUser(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/x-www-form-urlencode")
 	w.Header().Set("Allow-Control-Allow-Methods", "DELETE")
@@ -123,6 +132,7 @@ func DeleteAUser(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(params["id"])
 }
 
+// Update
 func UpdateDescription(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/x-www-form-urlencode")
 	w.Header().Set("Allow-Control-Allow-Methods", "PUT")
