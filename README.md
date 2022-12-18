@@ -60,26 +60,31 @@ curl -X GET 'http://localhost:4000/api/user/getAll'
 Response:
 ```sh
 [
-  { "_id":"639e53688390e0e9f0902c26",
+  { 
+    "_id":"639e53688390e0e9f0902c26",
     "address":"address2",
     "creation":"19/12/2022",
     "description":"description2",
     "dob":"7/8/2001",
     "name":"Ralph"
-    },  
-  { "_id":"639e59f7186676441decc92d",
+   },  
+  { 
+    "_id":"639e59f7186676441decc92d",
     "address":"address1",
     "creation":"19/12/2022",
     "description":"description1",
     "dob":"7/8/2001",
     "name":"Ralph"
-    }, 
-  { "_id":"639e5a0c186676441decc92e",
+   }, 
+  { 
+    "_id":"639e5a0c186676441decc92e",
     "address":"address3",
     "creation":"19/12/2022",
     "description":"description3",
     "dob":"8/9/2000",
-    "name":"Tom"}]
+    "name":"Tom"
+   }
+]
 ```
 ### Create User
 This endpoint adds a user to the `users` database.  
@@ -89,13 +94,14 @@ curl -X POST 'http://localhost:4000/api/user/add'
 ```
 Response:  
 ```sh
-  { "_id":"000000000000000000000000",
+  { 
+    "_id":"000000000000000000000000",
     "name":"Jerry",
     "dob":"19/01/2003",
     "add":"address4",
     "desc":"description4",
     "createdAt":"19/12/2022"
-    }
+   }
 
 ```
 ### Update User
