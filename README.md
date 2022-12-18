@@ -25,8 +25,6 @@ Performs CRUD operations on MongoDB written in Golang. You can create, read, upd
 ```
 ### Installation
 
-golang-mongodb-restful-starter-kit requires [Go](https://golang.org/) 1.10+ to run.
-
 Install the dependencies and devDependencies and start the server.
 
 ```sh
